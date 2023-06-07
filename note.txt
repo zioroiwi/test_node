@@ -1,0 +1,11 @@
+// install nodejs
+1. npm init
+2. npm install --save body-parser@1.19.0 dotenv@8.2.0 ejs@3.1.5 express@4.17.1
+-> body-parser: viết API, lấy thông số từ client gửi lên
+-> dotenv: lấy đc tham số từ file khai báo môi trường
+-> ejs: view engine
+-> express: framework
+3. npm install --save-dev @babel/core@7.12.10 @babel/preset-env@7.12.10 
+@babel/node@7.12.10 nodemon@2.0.7
+-> @babel/core @babel/preset-env @babel/node: trình compiler
+-> nodemon: server tự động refesh mỗi lần code thay đổi
