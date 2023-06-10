@@ -17,7 +17,8 @@ let createNewUser = async (data) => {
         gender: data.gender === "1" ? "true" : "false",
         roleId: data.roleId,
       });
-      resolve("success");
+      let allUsers = await db.User.findAll();
+      resolve(allUsers);
     } catch (error) {
       reject(error);
     }
@@ -79,10 +80,28 @@ let updateUserInfo = (data) => {
         user.address = data.address;
         user.phonenumber = data.phonenumber;
         await user.save();
-        let allUsers = await db.User.findAll();
-        resolve(allUsers);
+        resolve("success");
       } else {
         resolve({});
+      }
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
+
+let deleteUserById = (userId) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let user = await db.User.findOne({
+        where: { id: userId },
+        raw: false,
+      });
+      if (user) {
+        await user.destroy();
+        resolve("success");
+      } else {
+        resolve("Not Found");
       }
     } catch (e) {
       reject(e);
@@ -95,4 +114,5 @@ module.exports = {
   getAllUsers: getAllUsers,
   getUserInfoById: getUserInfoById,
   updateUserInfo: updateUserInfo,
+  deleteUserById: deleteUserById,
 };
