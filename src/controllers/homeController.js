@@ -1,6 +1,6 @@
 import db from "../models/index";
-import CRUDService from "../servers/CRUDService";
-import createNewUser from "../servers/CRUDService";
+import CRUDService from "../services/CRUDService";
+import createNewUser from "../services/CRUDService";
 
 let getHomePage = async (req, res) => {
   try {
@@ -56,7 +56,7 @@ let getEditCRUD = async (req, res) => {
 let putCRUD = async (req, res) => {
   let data = req.body;
   await CRUDService.updateUserInfo(data);
-  return res.redirect('/get-crud');
+  return res.redirect("/get-crud");
 };
 
 let deleteCRUD = async (req, res) => {
